@@ -1,0 +1,44 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+/media
+/static
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Celery
+celerybeat-schedule/
+dump.rdb

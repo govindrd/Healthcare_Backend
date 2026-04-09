@@ -1,0 +1,382 @@
+{
+  "info": {
+    "name": "Healthcare Backend API",
+    "description": "Postman collection for Healthcare Backend API (Django DRF)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"patient1@example.com\",\n  \"password\": \"password123\",\n  \"password2\": \"password123\",\n  \"first_name\": \"Patient\",\n  \"last_name\": \"One\",\n  \"user_type\": \"patient\",\n  \"phone\": \"1234567890\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/register/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"patient1@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/login/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/profile/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Updated\",\n  \"last_name\": \"User\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/profile/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"old_password\": \"password123\",\n  \"new_password\": \"newpass123\",\n  \"new_password2\": \"newpass123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/change-password/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "change-password"]
+            }
+          }
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/users/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "users"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patients",
+      "item": [
+        {
+          "name": "List Patients",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/patients/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "patients"]
+            }
+          }
+        },
+        {
+          "name": "Create Patient Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"9876543210\",\n  \"date_of_birth\": \"1990-01-01\",\n  \"gender\": \"male\",\n  \"blood_group\": \"O+\",\n  \"address\": \"123 Main St\",\n  \"city\": \"Mumbai\",\n  \"state\": \"Maharashtra\",\n  \"zip_code\": \"400001\",\n  \"medical_history\": \"None\",\n  \"allergies\": \"Pollen\",\n  \"emergency_contact\": \"Jane Doe\",\n  \"emergency_contact_phone\": \"9988776655\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/patients/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "patients"]
+            }
+          }
+        },
+        {
+          "name": "Get My Patient Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/patients/my_profile/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "patients", "my_profile"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Doctors",
+      "item": [
+        {
+          "name": "List Doctors",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/doctors/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "doctors"]
+            }
+          }
+        },
+        {
+          "name": "Create Doctor Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"specialization\": \"Cardiology\",\n  \"license_number\": \"LIC12345\",\n  \"phone\": \"9876501234\",\n  \"bio\": \"Experienced heart specialist.\",\n  \"years_of_experience\": 10,\n  \"qualifications\": \"MBBS, MD\",\n  \"clinic_address\": \"123 Clinic Rd\",\n  \"clinic_city\": \"Pune\",\n  \"clinic_state\": \"Maharashtra\",\n  \"clinic_zip\": \"411001\",\n  \"consultation_fee\": 1500.0,\n  \"availability\": \"Mon-Fri 10:00-18:00\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/doctors/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "doctors"]
+            }
+          }
+        },
+        {
+          "name": "Get My Doctor Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/doctors/my_profile/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "doctors", "my_profile"]
+            }
+          }
+        },
+        {
+          "name": "Get Doctors By Specialization",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/doctors/by_specialization/?specialization=Cardiology",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "doctors", "by_specialization"],
+              "query": [{ "key": "specialization", "value": "Cardiology" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mappings",
+      "item": [
+        {
+          "name": "List Mappings",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/mappings/mappings/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "mappings", "mappings"]
+            }
+          }
+        },
+        {
+          "name": "Create Mapping",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient\": 1,\n  \"doctor\": 1,\n  \"status\": \"pending\",\n  \"notes\": \"Initial assignment.\",\n  \"is_primary_doctor\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/mappings/mappings/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "mappings", "mappings"]
+            }
+          }
+        },
+        {
+          "name": "Get My Doctors",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/mappings/mappings/my_doctors/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "mappings", "mappings", "my_doctors"]
+            }
+          }
+        },
+        {
+          "name": "Get My Patients",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/mappings/mappings/my_patients/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "mappings", "mappings", "my_patients"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consultations",
+      "item": [
+        {
+          "name": "List Consultations",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/mappings/consultations/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "mappings", "consultations"]
+            }
+          }
+        },
+        {
+          "name": "Create Consultation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mapping\": 1,\n  \"consultation_type\": \"online\",\n  \"status\": \"scheduled\",\n  \"scheduled_date\": \"2026-05-01T10:00:00Z\",\n  \"notes\": \"Follow-up consultation\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/mappings/consultations/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "mappings", "consultations"]
+            }
+          }
+        },
+        {
+          "name": "Upcoming Consultations",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/mappings/consultations/upcoming/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "mappings", "consultations", "upcoming"]
+            }
+          }
+        },
+        {
+          "name": "Completed Consultations",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/mappings/consultations/completed/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "mappings", "consultations", "completed"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
