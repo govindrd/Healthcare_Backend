@@ -6,9 +6,10 @@ User = get_user_model()
 
 class Patient(models.Model):
     """Patient model"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='patients', null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_patients', null=True)
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
+    name = models.CharField(max_length=100, blank=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
     phone = models.CharField(max_length=20)
     date_of_birth = models.DateField()
     gender = models.CharField(

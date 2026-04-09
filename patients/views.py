@@ -18,4 +18,4 @@ class PatientViewSet(viewsets.ModelViewSet):
         return Patient.objects.filter(created_by=self.request.user)
     
     def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
+        serializer.save(created_by=self.request.user, user=self.request.user)

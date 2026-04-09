@@ -69,7 +69,8 @@ jobs:
     
     - name: Collect static files
       env:
-        DB_ENGINE: django.db.backends.django.db.backends.sqlite3
+        DB_ENGINE: django.db.backends.sqlite3
+        DB_NAME: db.sqlite3
         SECRET_KEY: test-secret-key
         DEBUG: True
       run: python manage.py collectstatic --noinput --clear

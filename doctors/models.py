@@ -19,9 +19,10 @@ class Doctor(models.Model):
         ('Surgery', 'General Surgery'),
     ]
     
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='doctors', null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_doctors', null=True)
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
+    name = models.CharField(max_length=100, blank=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
     specialization = models.CharField(max_length=100, choices=SPECIALIZATIONS)
     license_number = models.CharField(max_length=50, unique=True)
     phone = models.CharField(max_length=20)
